@@ -129,6 +129,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       mode = opt$solution,
       hessian = opt$hessian,
       convergence = opt$status
+      optiters = opt$iterations
     )
   }
   else if (method == "SR1") {
@@ -147,6 +148,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       mode = opt$solution,
       hessian = as(opthess(opt$solution,...),"dgCMatrix"),
       convergence = opt$status
+      optiters = opt$iterations
     )
   }
   else if (method == "trust") {
@@ -171,6 +173,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       mode = opt$argument,
       hessian = opt$hessian,
       convergence = opt$converged
+      optiters = opt$iterations
     )
   }
   else if (method == "BFGS") {
@@ -183,6 +186,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       mode = opt$par,
       hessian = opthess(opt$par,...),
       convergence = opt$convergence
+      optiters = opt$counts
     )
   }
   else {
