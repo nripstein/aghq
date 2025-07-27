@@ -128,7 +128,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       ff = ffa,
       mode = opt$solution,
       hessian = opt$hessian,
-      convergence = opt$status
+      convergence = opt$status,
       optiters = opt$iterations
     )
   }
@@ -147,7 +147,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       ff = ffa,
       mode = opt$solution,
       hessian = as(opthess(opt$solution,...),"dgCMatrix"),
-      convergence = opt$status
+      convergence = opt$status,
       optiters = opt$iterations
     )
   }
@@ -172,7 +172,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       ff = ffa,
       mode = opt$argument,
       hessian = opt$hessian,
-      convergence = opt$converged
+      convergence = opt$converged,
       optiters = opt$iterations
     )
   }
@@ -185,7 +185,7 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       ff = ffa,
       mode = opt$par,
       hessian = opthess(opt$par,...),
-      convergence = opt$convergence
+      convergence = opt$convergence,
       optiters = opt$counts
     )
   }
