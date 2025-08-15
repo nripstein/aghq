@@ -189,6 +189,28 @@ optimize_theta <- function(ff,startingvalue,control = default_control(),...) {
       optiters = opt$counts
     )
   }
+  else if (method == "nlminb") {
+    if (is.null(control$optcontrol)) control$optcontrol <- list()
+    # Accept lower=, upper=, and any other nlminb args via ...
+    opt <- nlminb(
+      start     = startingvalue,
+      objective = optfunc,
+      gradient  = optgrad,
+      control   = control$optcontrol,
+    )
+    out <- list(
+      ff          = ffa,
+      mode        = opt$par,
+      hessian     = opthess(opt$par, ...),      # compute once at the solution
+      convergence = opt$convergence,            # 0 means converged
+      optiters    = list(
+        iterations  = opt$iterations,
+        evaluations = opt$evaluations           # c("function", "gradient")
+      ),
+      message     = opt$message
+    )
+  }
+
   else {
     stop(paste0("Unknown optimization method: ",method))
   }
